@@ -1,0 +1,11 @@
+version: "3.1"
+services:
+  scheduler:
+    volumes:
+    - /Users/jroach/.config/gcloud/application_default_credentials.json:/usr/local/airflow/gcloud/application_default_credentials.json:rw
+  api-server:
+    volumes:
+    - /Users/jroach/.config/gcloud/application_default_credentials.json:/usr/local/airflow/gcloud/application_default_credentials.json:rw
+  triggerer:
+    volumes:
+    - /Users/jroach/.config/gcloud/application_default_credentials.json:/usr/local/airflow/gcloud/application_default_credentials.json:rw

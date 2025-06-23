@@ -1,0 +1,6 @@
+version: 2
+data_tests:
+  - name: assert_sales_by_item_calculation
+    description: >
+      Since all items should have a price greater than $0, if the total quantity sold is greater than 0, the 
+      total_amount should also be greater than 0.
