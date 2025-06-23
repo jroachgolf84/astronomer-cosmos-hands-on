@@ -14,7 +14,7 @@ from datetime import datetime
 with DAG(
     dag_id="gcs_to_bigquery",
     start_date=datetime(2020, 1, 1),
-    schedule="@once",
+    schedule="0 */10 * * *",
     catchup=False,
 ) as dag:
     # Create a list of Tasks used to move data from GCS to BigQuery
