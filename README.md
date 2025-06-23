@@ -35,15 +35,8 @@ really only applicable for a single team member.
 2. Update the `docker-compose.override.yml` to point to your `gcloud` credentials.
 3. Update your `GOOGLE_CLOUD_PROJECT` in the `.env` to your project ID.
 4. Run `astro dev start`.
-5. Once the Airflow UI has spun up, create a connection called `gcp_conn_id` with the following content in `extra`
-   (templated with your project ID):
-
-   ```
-   {
-     "impersonation_chain": "carmichael_industries@<project-id>.iam.gserviceaccount.com"
-   }
-   ```
-
+5. Once the Airflow UI has spun up, create a connection called `gcp_conn_id` of type `google_cloud_platform`. Don't add
+   anything to this connection.
 6. Turn on the `gcs_to_bigquery` and `sale_reporting` DAGs.
 
 ### In Astro
@@ -53,12 +46,5 @@ really only applicable for a single team member.
    to assume the `carmichael_industries` service account.
 3. In the "Environment" tab of the `cosmos-hands-on` Deployment, create a variable called `GOOGLE_CLOUD_PROJECT` with
    your project ID.
-4. Either in Astro or Airflow, create a connection called `gcp_conn_id` with the following content in `extra`
-   (templated with your project ID):
-
-   ```
-   {
-     "impersonation_chain": "carmichael_industries@<project-id>.iam.gserviceaccount.com"
-   }
-   ```
+4. Create a connection called `gcp_conn_id` of type `google_cloud_platform`. Don't add anything to this connection.
 5. Turn on the `gcs_to_bigquery` and `sale_reporting` DAGs.

@@ -8,7 +8,7 @@ from airflow import DAG
 from airflow.sdk import Asset
 
 from cosmos import ProfileConfig, ProjectConfig, ExecutionConfig, DbtTaskGroup
-from cosmos.profiles import GoogleCloudOauthProfileMapping
+from cosmos.profiles import GoogleCloudOauthProfileMapping, GoogleCloudServiceAccountDictProfileMapping
 
 from datetime import datetime
 
@@ -23,12 +23,13 @@ carmichael_industries_profile_config: ProfileConfig = ProfileConfig(
         profile_args={
             "project": "fe-demo-workloads",
             "dataset": "carmichael_industries",
+            "impersonate_service_account": "carmichael-industries-developm@fe-demo-workloads.iam.gserviceaccount.com"
         }
     ),
 )
 
 # Create other dbt-level config
-DBT_PROJECT_PATH: str = f"{os.environ['AIRFLOW_HOME']}/dags/dbt/sales_reporting"  # Pointing to mounted path
+DBT_PROJECT_PATH: str = f"{os.environ['AIRFLOW_HOME']}/dbt/sales_reporting"  # Pointing to mounted path
 DBT_EXECUTABLE_PATH = f"{os.environ['AIRFLOW_HOME']}/dbt_venv/bin/dbt"
 
 
