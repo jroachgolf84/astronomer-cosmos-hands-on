@@ -32,8 +32,8 @@ really only applicable for a single team member.
 ### Locally
 
 1. Log in with the `gcloud` CLI using `gcloud auth login`.
-2. Update the `docker-compose.override.yml` to point to your `gcloud` credentials.
-3. Update your `GOOGLE_CLOUD_PROJECT` in the `.env` to your project ID.
+2. Update the `docker-compose.override.yml` to point to the location where your `gcloud` credentials are stored.
+3. Update your `GOOGLE_CLOUD_PROJECT` key-value pair in the `.env` with your GCP project ID.
 4. Run `astro dev start`.
 5. Once the Airflow UI has spun up, create a connection called `gcp_conn_id` of type `google_cloud_platform`. Don't add
    anything to this connection.
@@ -43,8 +43,10 @@ really only applicable for a single team member.
 
 1. Create a new Astro Deployment called `cosmos-hands-on`.
 2. In the "Details" tab of the `cosmos-hands-on` Deployment, copy the Workload Identity. Allow this Workload Identity
-   to assume the `carmichael_industries` service account.
+   to impersonate the `carmichael_industries` service account by providing it "Service Account Token Creator"
+   permissions in the GCP UI of with the `gcloud` CLI.
 3. In the "Environment" tab of the `cosmos-hands-on` Deployment, create a variable called `GOOGLE_CLOUD_PROJECT` with
-   your project ID.
-4. Create a connection called `gcp_conn_id` of type `google_cloud_platform`. Don't add anything to this connection.
+   your GCP project ID.
+4. Create a connection called `gcp_conn_id` of type `google_cloud_platform`. Don't add anything to this connection, the
+   `impersonate_service_account` key-value pair in the Cosmos profile mapping shoudl do the trick.
 5. Turn on the `gcs_to_bigquery` and `sale_reporting` DAGs.
